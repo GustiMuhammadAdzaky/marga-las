@@ -40,13 +40,6 @@ class LaporanPenjualanController extends Controller
         return view("admin.laporan", compact("laporan", "title"));
     }
 
-    // public function viewPdf()
-    // {
-    //     $model = new TransaksiModel();
-    //     $laporan =  $model->idToData(TransaksiModel::where('status', 'terbayar')->get());
-    //     $pdf = Pdf::loadView('admin.laporan_pdf', ['laporan' => $laporan]);
-    //     return $pdf->download('laporan.pdf');
-    // }
 
     public function viewPdf(Request $request)
     {

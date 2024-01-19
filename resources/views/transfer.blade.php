@@ -33,12 +33,9 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+    </style>
 </head>
-
-
-
-
-
 
 <body class="sub_page">
     <div class="hero_area">
@@ -80,73 +77,74 @@
             </div>
             @include('partials.navbar')
         </header>
+        <!-- end header section -->
     </div>
 
-
-
-
-    <div class="container mt-3 shadow p-3 mb-5 bg-white rounded">
-        <table class="table">
-            @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
+    <!-- contact section -->
+    <section class="contact_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>Bukti {{ $title }}</h2>
             </div>
-            @endif
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Id Transaksi</th>
-                    <th scope="col">Nama Pembeli </th>
-                    <th scope="col">Layanan atau Sperpart</th>
-                    <th scope="col">Status Pembelian</th>
-                    <th scope="col">Total Harga</th>
-                    <th scope="col">Tanggal Memesan</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <!-- ... -->
-            <tbody>
-                @foreach($transaksiModels as $index => $transaksiModel)
-                <tr>
-                    <td>{{ $transaksiModel->id }}</td>
-                    <td>{{ Auth::user()->name }}</td>
-
-                    <td>
-                        {{ $transaksiModel->transaksi_data }}
-                    </td>
-
-                    {{-- Ganti logic untuk menampilkan status --}}
-                    <td>
-                        @if($transaksiModel->status == "belum_terbayar")
-                        <span class="badge badge-danger">Belum Lunas</span>
-                        @elseif($transaksiModel->status == "terbayar")
-                        <span class="badge badge-success">Lunas</span>
+            <div class="row">
+                <div class="col">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <div class="form_container">
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
                         @endif
-                    </td>
 
-                    <td>{{ $transaksiModel->total_harga }}</td>
-                    <td>{{ $transaksiModel->tanggal_pesan }}</td>
-                    <td>
-                        <form action="{{ route('transaksi.destroy') }}" method="post">
+                        <!-- Id Transaksi	Nama Peneransfer	Foto Bukti -->
+                        <form action="{{ route('transfer.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $transaksiModel->id }}">
-                            <button onclick="return confirm('Apakah Anda yakin ingin menghapus data transaksi ini?')"
-                                type="submit" class="btn btn-danger">Delete Transaksi</button>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <input type="text" name="transaksi_id" class="form-control"
+                                        placeholder="Inputkan Id Transaksi" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <input type="text" name="nama_pembeli" class="form-control"
+                                        placeholder="Inputkan Nama Pembeli" value="{{ Auth::user()->name; }}" />
+                                </div>
+                            </div>
+                            <img class="img-preview img-fluid">
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <div class="text-center">
+                                        <label for="image" class="form-label required-field" style="color: white;">Bukti
+                                            Transfer</label>
+                                    </div>
+                                    <input name="gambar" class="form-control" type="file" id="image"
+                                        onchange="previewImage()">
+                                </div>
+                            </div>
+                            <div class="btn_box">
+                                <button type="submit">
+                                    Kirim
+                                </button>
+                            </div>
                         </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-            <!-- ... -->
-
-
-
-
-        </table>
-    </div>
-
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact section -->
 
     <!-- info section -->
+
     <section class="info_section ">
         <div class="info_container layout_padding2">
             <div class="container">
@@ -246,7 +244,7 @@
                         <div class="col-md-3">
                             <div class="info_form ">
                                 <form action="">
-                                    <input type="email" placeholder="Enter Your Email" />
+                                    <input type="email" placeholder="Masukkan Email" />
                                     <button>
                                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                     </button>
@@ -271,6 +269,25 @@
     </footer>
     <!-- footer section -->
 
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector("#image");
+            const imgPreview = document.querySelector('.img-preview');
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
+
     <!-- jQery -->
     <script src="js/jquery-3.4.1.min.js"></script>
     <!-- popper js -->
@@ -288,10 +305,7 @@
         integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
-    <!-- Google Map -->
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-    <!-- End Google Map -->
+
 
 </body>
 

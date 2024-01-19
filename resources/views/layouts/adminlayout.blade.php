@@ -89,9 +89,21 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.transfer'); }}">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Data Transfer Pelanggan</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('laporan.admin') }}">
                     <i class='bx bxs-group'></i>
                     <span class="text">Laporan Penjualan</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('faktur.admin') }}">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Faktur</span>
                 </a>
             </li>
             <li>
