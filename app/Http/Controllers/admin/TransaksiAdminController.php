@@ -49,4 +49,13 @@ class TransaksiAdminController extends Controller
             return redirect()->route('transaksi.admin')->with('status', 'Data Berhasil Diperbaharui');
         }
     }
+
+    public function storeKeterangan(Request $request)
+    {
+        $transaksi = TransaksiModel::find($request->input("id"));
+        $transaksi->keterangan = $request->input("keterangan");
+        $transaksi->save();
+
+        return redirect()->route('transaksi.admin')->with('status', 'Keterangan Berhasil diperbaharui');
+    }
 }

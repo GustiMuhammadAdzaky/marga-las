@@ -17,11 +17,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->json('transaksi_data');
-            $table->enum('status', ['terbayar', 'belum_terbayar'])->default('belum_terbayar');
+            $table->enum('status', ['terbayar', "menunggu", 'belum_terbayar'])->default('belum_terbayar');
+            $table->enum('tipe_pembayaran', ['transfer', "tunai", 'kredit'])->default('transfer');
             $table->string('total_harga');
             $table->timestamp('tanggal_pesan')->default(now());
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->string('gambar')->nullable();
+            $table->time('reminder')->nullable();
+            $table->string('keterangan')->nullable();
         });
     }
 

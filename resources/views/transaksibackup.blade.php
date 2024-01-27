@@ -101,7 +101,6 @@
                     <th scope="col">Total Harga</th>
                     <th scope="col">Tanggal Memesan</th>
                     <th scope="col">Tipe Pembayaran</th>
-                    <th scope="col">Pesan Admin</th>
                     <th scope="col">Bukti Transfer</th>
                 </tr>
             </thead>
@@ -129,12 +128,7 @@
 
                     <td>{{ $transaksiModel->total_harga }}</td>
                     <td>{{ $transaksiModel->tanggal_pesan }}</td>
-                    <td>{{ $transaksiModel->tipe_pembayaran }}</td>
-                    <td><button type="button" class="btn btn-warning"
-                            onclick="keteranganFungsi(this, '{{ $transaksiModel->keterangan }}')" data-toggle="modal"
-                            data-target="#exampleModal">
-                            Keterangan
-                        </button></td>
+                    <td>Transfer</td>
                     <td>
                         <form action="{{ route('transfer.form', $transaksiModel->id) }}" method="get">
                             <button class="btn btn-primary" type="submit">Kirim Bukti Transfer</button>
@@ -151,29 +145,6 @@
 
         </table>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Catatan Admin</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <p id="keterangans"></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
 
@@ -302,15 +273,8 @@
     </footer>
     <!-- footer section -->
 
-    <script>
-        function keteranganFungsi(button, keterangan) {
-            document.getElementById("keterangans").innerHTML = keterangan;
-        }
-    </script>
-
     <!-- jQery -->
     <script src="js/jquery-3.4.1.min.js"></script>
-
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

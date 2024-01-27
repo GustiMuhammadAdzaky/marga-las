@@ -668,9 +668,39 @@
                 </a>
             </li>
             <li>
+                <a href="/kategori_admin">
+                    <i class='bx bx-store'></i>
+                    <span class="text">Kategori Admin</span>
+                </a>
+            </li>
+            <li>
                 <a href="/layanan_admin">
                     <i class='bx bx-store'></i>
                     <span class="text">Layanan</span>
+                </a>
+            </li>
+            <li>
+                <a href="/galeri_admin">
+                    <i class='bx bx-store'></i>
+                    <span class="text">Galeri</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kontak.admin') }}">
+                    <i class='bx bx-store'></i>
+                    <span class="text">Lihat Pesan Kontak</span>
+                </a>
+            </li>
+            <li>
+                <a href="/transaksi_admin">
+                    <i class='bx bx-store'></i>
+                    <span class="text">Kelola Transaksi</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ Route('invoice.admin') }}">
+                    <i class='bx bx-store'></i>
+                    <span class="text">Invoice</span>
                 </a>
             </li>
             <li>
@@ -679,28 +709,32 @@
                     <span class="text">Galeri Admin</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="/kontak_admin">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Kontak</span>
                 </a>
-            </li>
+            </li> -->
             <li>
-                <a href="/sparepart_admin">
+                <a href="{{ route('laporan.admin') }}">
                     <i class='bx bxs-group'></i>
-                    <span class="text">Laporan Penjualan Sparepart</span>
+                    <span class="text">Laporan Penjualan</span>
                 </a>
             </li>
             <li>
-                <a href="laporan_penjualan_layanan">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Laporan Penjualan Layanan</span>
+                <a href="{{ route('faktur.admin') }}">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Faktur</span>
                 </a>
             </li>
             <li>
-                <a href="laporan_penjualan_sparepart">
-                    <i class='bx bxs-log-out-circle'></i>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    <i class='bx bxs-group'></i>
                     <span class="text">Logout</span>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </a>
             </li>
 

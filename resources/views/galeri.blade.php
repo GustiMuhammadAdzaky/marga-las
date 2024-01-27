@@ -2,6 +2,8 @@
 <html>
 
 
+<!-- {{ asset('storage/galeri/') }} -->
+
 
 <head>
     <!-- Basic -->

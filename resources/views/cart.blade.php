@@ -110,6 +110,15 @@
                                     <p class="text-green-800">{{ $message }}</p>
                                 </div>
                                 @endif
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 <h3 class="text-3xl text-bold">Cart List</h3>
                                 <div class="flex-1">
                                     <table class="w-full text-sm lg:text-base" cellspacing="0">
@@ -192,14 +201,18 @@
                                         <div class="checkout" style="display: inline-block;">
                                             <form action="{{ route('cart.checkout') }}" method="post">
                                                 @csrf
+                                                <select class="form-control" name="tipe_pembayaran"
+                                                    id="exampleFormControlSelect1">
+                                                    <option value="transfer" selected>Transfer</option>
+                                                    <option value="tunai">Tunai</option>
+                                                    <option value="kredit">Kredit</option>
+                                                </select>
                                                 <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                                                 <input type="hidden" name="transaksi_data"
                                                     value="{{ $cartItems->keys() }}">
                                                 <input type="hidden" name="total_harga" value="{{ Cart::getTotal() }}">
                                                 <input type="hidden" name="tanggal_pesan"
                                                     value="{{ now()->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s') }}">
-
-
                                                 <button class="px-6 py-2 text-green-800 bg-green-300">CheckOut</button>
                                             </form>
                                         </div>

@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
     <!-- Basic -->
@@ -14,7 +15,7 @@
     <title>Marga Las</title>
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
 
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,59 +27,69 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
         integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
     <!-- font awesome style -->
-    <!-- <link href="css/font-awesome.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="css/login.css" rel="stylesheet" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+    <style>
+    </style>
 </head>
 
-<body>
-    <header class="header_section">
-        <div class="header_top">
-            <div class="container-fluid header_top_container">
-                <img class="logo" src="images/logomargalas.png">
-                <a class="navbar-brand " href="index.html"> Marga<span>Las</span> </a>
-                <div class="contact_nav">
-                    <a href="">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <span>
-                            Lokasi
-                        </span>
-                    </a>
-                    <a href="">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span>
-                            Telepon : +62 89520361859
-                        </span>
-                    </a>
-                    <a href="">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <span>
-                            margalas08@gmail.com
-                        </span>
-                    </a>
-                </div>
-                <div class="social_box">
-                    <a href="">
-                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                    </a>
-                    <a href="">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                    </a>
+
+
+
+<body class="sub_page">
+    <div class="hero_area">
+        <!-- header section strats -->
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid header_top_container">
+                    <img class="logo" src="{{ asset('images/logomargalas.png') }}">
+                    <a class="navbar-brand " href="index.html"> Marga<span>Las</span> </a>
+                    <div class="contact_nav">
+                        <a href="">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <span>
+                                Lokasi
+                            </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span>
+                                Call : +62 89520361859
+                            </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span>
+                                margalas08@gmail.com
+                            </span>
+                        </a>
+                    </div>
+                    <div class="social_box">
+                        <a href="">
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        @include('partials.navbar')
-    </header>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+            @include('partials.navbar')
+        </header>
+        <!-- end header section -->
+    </div>
+
+    <!-- contact section -->
+    <section class="contact_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+            </div>
+            <div class="row">
+                <div class="col">
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -87,121 +98,39 @@
                             @endforeach
                         </ul>
                     </div>
-                    <br />
                     @endif
+                    <div class="form_container">
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+
+                        <!-- Id Transaksi	Nama Peneransfer	Foto Bukti -->
+                        <form action="/transaksi/{{ $transaksi->id }}" enctype="multipart/form-data" method="POST">
+                            @method('PUT')
                             @csrf
-
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                            <img class="img-preview img-fluid">
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <div class="text-center">
+                                        <label for="image" class="form-label required-field" style="color: white;">Bukti
+                                            Transfer</label>
+                                    </div>
+                                    <input name="gambar" class="form-control" type="file" id="image"
+                                        onchange="previewImage()">
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address')
-                                    }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Nomor Whatsapp')
-                                    }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="nomor" type="nomor"
-                                        class="form-control @error('nomor') is-invalid @enderror" name="nomor"
-                                        value="{{ old('nomor') }}" required autocomplete="nomor">
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password')
-                                    }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-3">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm
-                                    Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="captcha" class="col-md-4 col-form-label text-md-end">Capctha</label>
-
-                                <div class="col-md-6">
-                                    <span id="captchaContainer">{!! captcha_img('math') !!}</span>
-
-                                    <button type="button" class="btn btn-danger" id="reload">
-                                        &#x21bb;
-                                    </button>
-                                    <input id="captcha" type="text" class="form-control" name="captcha">
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
+                            <div class="btn_box">
+                                <button type="submit">
+                                    Kirim
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- end contact section -->
+
+    <!-- info section -->
 
     <section class="info_section ">
         <div class="info_container layout_padding2">
@@ -230,7 +159,7 @@
                                         <a class="" href="portfolio.html"> Galeri </a>
                                     </li>
                                     <li class="">
-                                        <a class="" href="contact.html"> Kontak</a>
+                                        <a class="" href="contact.html"> Kontak </a>
                                     </li>
                                 </ul>
                             </div>
@@ -302,7 +231,7 @@
                         <div class="col-md-3">
                             <div class="info_form ">
                                 <form action="">
-                                    <input type="email" placeholder="Masukkan Email Anda" />
+                                    <input type="email" placeholder="Masukkan Email" />
                                     <button>
                                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                     </button>
@@ -315,6 +244,9 @@
         </div>
     </section>
 
+    <!-- end info section -->
+
+    <!-- footer section -->
     <footer class="footer_section">
         <div class="container">
             <p>
@@ -322,29 +254,29 @@
             </p>
         </div>
     </footer>
+    <!-- footer section -->
 
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector("#image");
+            const imgPreview = document.querySelector('.img-preview');
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 
     <!-- jQery -->
     <script src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-        document.getElementById('reload').addEventListener('click', function () {
-            var xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var responseData = JSON.parse(xhr.responseText);
-                    document.getElementById('captchaContainer').innerHTML = responseData.captcha;
-                }
-            };
-
-            xhr.open('GET', 'reload-captcha', true);
-            xhr.send();
-        });
-    </script>
-
-
-
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

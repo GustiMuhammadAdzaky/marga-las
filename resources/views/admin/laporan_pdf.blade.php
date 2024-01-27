@@ -40,6 +40,19 @@
         .right {
             text-align: right;
         }
+
+        #margalas {
+            color: #044CB2;
+
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        h3 {
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -47,7 +60,14 @@
     <header>
         <div class="container">
             <div class="title">
-                <h3>Laporan Transaksi Bengkel Marga Las</h3>
+
+                <h3 class="text-center" style="font-size: 25pt;">Laporan Jasa Service dan penjualan</h3>
+
+
+                <h3 class="text-center" id="margalas" style="font-size: 20pt;">Marga Las
+                </h3>
+
+                <p tyle="font-size: 30pt;">Jalan 28 Oktober No.18b</p>
             </div>
             <hr>
         </div>

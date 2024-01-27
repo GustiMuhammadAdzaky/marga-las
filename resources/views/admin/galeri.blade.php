@@ -2,6 +2,8 @@
 @section('content')
 
 
+
+
 <div class="head-title">
     <div class="left">
         <h1>{{ $title }}</h1>
@@ -32,7 +34,8 @@
                         <img src="{{ asset('storage/galeri/' . basename($mdl->gambar)) }}" alt="">
                     </td>
                     <td>
-                        <form action="" method="POST" style="display: inline-block;">
+                        <form action="{{ route('galeri.destroy', $mdl->id) }}" method="POST"
+                            style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"
@@ -41,6 +44,7 @@
                     </td>
                 </tr>
                 @endforeach
+
             </tbody>
         </table>
 

@@ -35,6 +35,12 @@
     <link href="css/responsive.css" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
+
+    <style>
+        .star-rating {
+            color: #BCA054;
+        }
+    </style>
 </head>
 
 
@@ -184,6 +190,51 @@
     <!-- end about section -->
 
     <!-- portfolio section -->
+    <section class="portfolio_section" style="background-color: #DA7426;">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    Testimoni
+                </h2>
+            </div>
+            <div class="carousel-wrap ">
+                <div class="filter_box">
+                    <nav class="owl-filter-bar">
+                        <a href="{{ route('testimoni.form') }}">
+                            <button class="btn btn-success">Ulas Sekarang</button>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel portfolio_carousel">
+            <!--  -->
+
+            @foreach($testimoniModel as $model)
+            <div class="item decorative">
+                <div class="box">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: black;">{{ $model->name }}</h5>
+                            <p class="card-text" style="color: black;">{{ $model->deskripsi }}</p>
+                            <!-- buat kode bintang disini ! -->
+                            <div class="star-rating">
+                                <?php for ($x = 1; $x <= $model->rate; $x++) { ?>
+                                <span class="star">&#9733;</span>
+                                <?php }; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            <!--  -->
+        </div>
+    </section>
+    <!-- end portfolio section -->
+
+    <!-- portfolio section -->
 
     <section class="portfolio_section ">
         <div class="container">
@@ -192,15 +243,7 @@
                     Galeri
                 </h2>
             </div>
-            <div class="carousel-wrap ">
-                <div class="filter_box">
-                    <nav class="owl-filter-bar">
-                        <a href="#" class="item active" data-owl-filter="*">Semua</a>
-                        <a href="#" class="item" data-owl-filter=".decorative">Perbaikan Spare Part</a>
-                        <a href="#" class="item" data-owl-filter=".facade">Pembuatan Spare Part</a>
-                    </nav>
-                </div>
-            </div>
+
         </div>
         <div class="owl-carousel portfolio_carousel">
             <div class="item decorative">
@@ -208,9 +251,7 @@
                     <div class="img-box">
                         <img src="images/pengerjaanlas.jpg" alt="" />
                         <div class="btn_overlay">
-                            <a href="portfolio.html" class="">
-                                Lihat Lebih Banyak
-                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -220,9 +261,6 @@
                     <div class="img-box">
                         <img src="images/pengerjaanlas1.jpg" alt="" />
                         <div class="btn_overlay">
-                            <a href="portfolio.html" class="">
-                                Lihat Lebih Banyak
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -232,9 +270,7 @@
                     <div class="img-box">
                         <img src="images/pengerjaanbubut.jpg" alt="" />
                         <div class="btn_overlay">
-                            <a href="portfolio.html" class="">
-                                Lihat Lebih Banyak
-                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -244,9 +280,7 @@
                     <div class="img-box">
                         <img src="images/pengerjaanbubut2.jpg" alt="" />
                         <div class="btn_overlay">
-                            <a href="portfolio.html" class="">
-                                Lihat Lebih Banyak
-                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -598,7 +632,7 @@
             </div>
 
             <div class="btn-box">
-                <a href="service.html">
+                <a href="/layanan">
                     Pesan Layanan
                 </a>
             </div>
@@ -607,68 +641,7 @@
 
     <!-- end service section -->
 
-    <!-- contact section -->
-    <section class="contact_section ">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2>Kontak <span>Kami</span></h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6 px-0">
-                    <div class="form_container">
-                        <form action="">
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <input type="text" class="form-control" placeholder="Masukkan nama" />
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-lg-6">
-                                    <input type="text" class="form-control" placeholder="Masukkan No Telepon" />
-                                </div>
-                                <div class="form-group col-lg-6">
-                                    <select name="" id="" class="form-control wide">
-                                        <option value="">Pilih Layanan</option>
-                                        <option value="">Perbaikan Spare Part</option>
-                                        <option value="">Pembuatan Spare Part</option>
-                                        <option value="">Spare Part</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <input type="email" class="form-control" placeholder="Email" />
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <input type="text" class="message-box form-control" placeholder="Pesan" />
-                                </div>
-                            </div>
-                            <div class="btn_box">
-                                <button>
-                                    Kirim
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-6 px-0">
-                    <div class="map_container">
-                        <div class="map">
-                            <div id="googleMap">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8182506913504!2d109.36391200000003!3d-0.010705999999992017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d58105149f977%3A0x1893263f43dd82b6!2sMarga%20Las!5e0!3m2!1sid!2sid!4v1701785994505!5m2!1sid!2sid"
-                                    style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end contact section -->
+
 
 
     <!-- info section -->

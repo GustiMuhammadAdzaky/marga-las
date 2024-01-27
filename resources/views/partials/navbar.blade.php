@@ -28,6 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/kontak">Kontak</a>
                     </li>
+
                     @guest
                     @if (Route::has('login'))
                     <li class="nav-item">
@@ -49,6 +50,7 @@
 
 
                     @else
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
@@ -56,10 +58,10 @@
                             @if(Auth::user()->role == 'admin')
                             <a class="dropdown-item" href="/dashboard">Dashboard</a>
                             <a class="dropdown-item" href="/transaksi">Transaksi</a>
-                            <a class="dropdown-item" href="{{ route('transfer.form') }}">Bukti Transfer</a>
+
+
                             @elseif(Auth::user()->role == 'pelanggan')
                             <a class="dropdown-item" href="/transaksi">Transaksi</a>
-                            <a class="dropdown-item" href="{{ route('transfer.form') }}">Bukti Transfer</a>
 
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

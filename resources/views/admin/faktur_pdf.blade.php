@@ -37,7 +37,7 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #FFCDCE;
         }
 
         .left,
@@ -53,6 +53,10 @@
         .left {
             float: left;
         }
+
+        .text-center {
+            text-align: center;
+        }
     </style>
     <title>Invoice</title>
 </head>
@@ -60,19 +64,26 @@
 <body>
     <div class="container">
         <div class="lokasi">
-            <p>Marga Las</p>
+            <h3 style="color: #0548A0;">Marga Las</h3>
             <p>Jalan 28 Oktober No.18b</p>
+            <p>Email: margalas08@gmail.com</p>
+            <p>Telepon: 089520361859</p>
         </div>
         <div class="right">
             @php date_default_timezone_set('Asia/Jakarta'); @endphp
-            <p>Pontianak, {{ date('d-m-Y') }}</p>
-            <p>Kepada Yth : </p>
-            <p>{{ $data["nama_customer"] }}</p>
+            <p style="margin-top: 35px;">Pontianak, {{ date('d-m-Y') }}</p>
+            <p class="text-center" style="margin-top: 15px;">Kepada Yth : </p>
+            <p class="text-center" style="margin-top: 15px;">{{ $data["nama_customer"] }}</p>
         </div>
         <br>
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
         <table>
             <tr>
                 <th>No. Invoice</th>
@@ -86,7 +97,14 @@
                 <td>{{ $data["tipe_pembayaran"] }}</td>
                 <td>{{ $data["nama_layanan"] }}</td>
                 <td>{{ $data["quantity"] }}</td>
-                <td>{{ $data["total"] }}</td>
+                <td>Rp{{ number_format($data["total"], 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>Rp{{ number_format($data["total"], 0, ',', '.') }}</td>
             </tr>
         </table>
         <div class="left">

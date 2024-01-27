@@ -13,16 +13,15 @@ use App\Http\Controllers\Admin\LaporanPenjualanController;
 use App\Http\Controllers\Admin\LayananAdminController;
 use App\Http\Controllers\Admin\TransaksiAdminController;
 use App\Http\Controllers\Admin\TransferController;
+use App\Http\Controllers\CapthaController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\kontakConntroller;
+use App\Http\Controllers\KontakConntroller;
 use App\Http\Controllers\LayananController;
-use App\Http\Controllers\SpearPartController;
 use App\Http\Controllers\TentangController;
-use App\Http\Controllers\TransferUserController;
-use App\Models\KontakModel;
+use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,6 +49,7 @@ Route::get('/layanan', [LayananController::class, 'index']);
 Route::get('/tentang', [TentangController::class, 'index']);
 Route::get('/galeri', [GaleriController::class, 'index']);
 Route::get('/kontak', [kontakConntroller::class, 'index'])->name("kontak");
+route::get('/reload-captcha', [CapthaController::class, 'reload']);
 
 
 
@@ -79,11 +79,14 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
     // Transaksi Admin
     Route::get('transaksi_admin', [TransaksiAdminController::class, 'index'])->name("transaksi.admin");
     Route::post('/update-status', [TransaksiAdminController::class, 'updateStatus'])->name('update.status');
+    Route::post('/keterangan_store', [TransaksiAdminController::class, 'storeKeterangan'])->name('keterangan.store');
 
     // galeri
-    Route::get('/galeri_admin', [GaleriAdminController::class, 'index']);
+    Route::get('/galeri_admin', [GaleriAdminController::class, 'index'])->name("galeri.index");
     Route::get('/tambah_galeri', [GaleriAdminController::class, 'tambahData'])->name("tambah_galeri");
     Route::post('galeri_admin/store', [GaleriAdminController::class, 'store']);
+    Route::delete('galeri_admin/{id}', [GaleriAdminController::class, 'destroy'])->name('galeri.destroy');
+
 
 
     // invoice controller
@@ -109,9 +112,12 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
 
 
 Route::group(['middleware' => ['checkRole:admin,pelanggan']], function () {
+    // checkout To transaksi
     Route::post('cart/checkout', [TransaksiController::class, 'checkout'])->name('cart.checkout');
+    // Transaksi -> SEKARANG
     Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-    Route::post('/transaksi/destroy', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+    Route::get('/transaksi/{id}/transfer', [TransaksiController::class, 'form'])->name('transfer.form');
+    Route::put('/transaksi/{id}', [TransaksiController::class, 'store'])->name('transfer.store');
 
     // invoice
     Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
@@ -120,7 +126,6 @@ Route::group(['middleware' => ['checkRole:admin,pelanggan']], function () {
     Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
-    // Tranfer User
-    Route::get('/transfer_user', [TransferUserController::class, 'form'])->name('transfer.form');
-    Route::post('/transfer_user/store', [TransferUserController::class, 'store'])->name('transfer.store');
+    Route::get('/testimoni_form', [TestimoniController::class, 'form'])->name('testimoni.form');
+    Route::post('/testimoni_form', [TestimoniController::class, 'store'])->name('testimoni.store');
 });

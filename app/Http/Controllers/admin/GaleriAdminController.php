@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\GaleriModel;
+use Illuminate\Support\Facades\Storage;
 
 class GaleriAdminController extends Controller
 {
@@ -45,6 +46,20 @@ class GaleriAdminController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->route('layanan_admin')->with('status', 'Data berhasil ditambahkan');
+        return redirect()->route('galeri.index')->with('status', 'Data berhasil ditambahkan');
+    }
+
+    public function destroy($id)
+    {
+        $galeri = GaleriModel::findOrFail($id);
+
+        // Hapus file gambar dari storage jika ada
+        if ($galeri->gambar) {
+            Storage::delete('public/galeri/' . $galeri->gambar);
+        }
+        // Hapus data dari database
+        $galeri->delete();
+
+        return redirect()->route('galeri.index')->with('status', 'Data berhasil dihapus');
     }
 }

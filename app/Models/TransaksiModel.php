@@ -11,15 +11,17 @@ class TransaksiModel extends Model
     use HasFactory;
     protected $table = 'tb_transaksi';
 
-
-
     protected $fillable = [
-        'user_id', 'transaksi_data', 'status', 'total_harga', 'tanggal_pesan', 'pengingat'
+        'user_id', 'transaksi_data', 'status', 'total_harga', 'tanggal_pesan', 'pengingat', "gambar", "reminder", "keterangan", 'tipe_pembayaran'
     ];
 
+
+
+    //  didalam transaksiModels, sebenarnya ada field user_id, yang user_id memeliki  hubungan dengan id pada Users(model), ini adalah code mengambil user pada user_id
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+        // cara ambilnya adalah $transaksiModels[0]->user;
     }
 
 

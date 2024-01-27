@@ -35,13 +35,16 @@
             <thead>
                 <tr>
 
-                    <th>Id Pemesan </th>
-                    <th>Nama Pemesan</th>
-                    <th>Status Pembelian</th>
-                    <th>Keterangan</th>
-                    <th>Hubungi di Whatsapp</th>
-                    <th>Bukti Pembayaran</th>
-                    <th>Informasi Lengkap</th>
+                    <th class="text-center">Id Pemesan </th>
+                    <th class="text-center">Nama Pemesan</th>
+                    <th class="text-center">Transaksi Data</th>
+                    <th class="text-center">Status Pembelian</th>
+                    <th class="text-center">Total Harga</th>
+                    <th class="text-center">Tanggal Pemesanan</th>
+                    <th class="text-center">Keterangan</th>
+                    <th class="text-center">Tipe Pemayaran</th>
+                    <th class="text-center">Hubungi di Whatsapp</th>
+                    <th class="text-center">Bukti Pembayaran</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +58,12 @@
                         User Tidak Ditemukan
                         @endif
                     </td>
+
+
+                    <td>
+                        {{ $transaksiModel->transaksi_data }}
+                    </td>
+                    <!-- {{ $transaksiModel->id }} -->
                     <td>
                         <form id="formUbahStatus" action="{{ url('/update-status') }}" method="POST">
                             @csrf
@@ -72,6 +81,9 @@
                                 status</button>
                         </form>
                     </td>
+
+                    <td>{{ $transaksiModel->total_harga }}</td>
+                    <td>{{ $transaksiModel->tanggal_pesan }}</td>
                     <td>
                         <button type="button"
                             onclick="keterangan({{ $transaksiModel->id }}, '{{ $transaksiModel->keterangan }}')"
@@ -80,11 +92,11 @@
                         </button>
 
                     </td>
+                    <td>Transfer</td>
                     <td>
                         <a href="https://api.whatsapp.com/send?phone={{ $transaksiModel->user->nomor }}"><button
                                 class="btn btn-success">Whattapp</button></a>
                     </td>
-
                     <td>
                         @if($transaksiModel->gambar == null)
                         <span class="badge bg-danger">Belum Transfer</span>
@@ -93,51 +105,11 @@
                                 src="{{ asset('storage/transfer/' . basename($transaksiModel->gambar)) }}" alt=""></a>
                         @endif
                     </td>
-
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal2" data-transaksi-data="{{ $transaksiModel->transaksi_data }}"
-                            data-total-harga="{{ $transaksiModel->total_harga }}"
-                            data-tanggal-pesan="{{ $transaksiModel->tanggal_pesan }}"
-                            data-tipe-pemayaran="{{ $transaksiModel->tipe_pembayaran }}"
-                            data-gambar="{{ $transaksiModel->gambar }}" onclick="detail(this)">
-                            Detail
-                        </button>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
 
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <td>
-                    <p id="transaksi_data"></p>
-                </td>
-                <td>
-                    <p id="total_harga"></p>
-                </td>
-                <td>
-                    <p id="tanggal_pemesanan"></p>
-                </td>
-                <td>
-                    <p id="tipe_pemayaran"></p>
-                </td>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -148,7 +120,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Input Keterangan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -172,21 +144,6 @@
 
 
 <script>
-    function detail(button) {
-
-        var transaksi_data = button.getAttribute('data-transaksi-data');
-        var total_harga = button.getAttribute('data-total-harga');
-        var tanggal_pesan = button.getAttribute('data-tanggal-pesan');
-        var tipe_pemayaran = button.getAttribute('data-tipe-pemayaran');
-        var bukti_pembayaran = button.getAttribute('data-gambar');
-
-        document.getElementById("transaksi_data").innerHTML = 'Transaksi Data: ' + transaksi_data;
-        document.getElementById("total_harga").innerHTML = 'Total Harga: ' + total_harga;
-        document.getElementById("tanggal_pemesanan").innerHTML = 'Tanggal Pemesanan: ' + tanggal_pesan;
-        document.getElementById("tipe_pemayaran").innerHTML = 'Tipe Pembayaran: ' + tipe_pemayaran;
-        document.getElementById("bukti_pembayaran").innerHTML = 'Bukti Pembayaran: ' + bukti_pembayaran;
-    }
-
 
 
     function keterangan(id, keterangan) {

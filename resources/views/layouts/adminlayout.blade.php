@@ -82,18 +82,12 @@
                     <span class="text">Galeri Admin</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="/kontak_admin">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Kontak</span>
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.transfer'); }}">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Data Transfer Pelanggan</span>
-                </a>
-            </li>
+            </li> -->
             <li>
                 <a href="{{ route('laporan.admin') }}">
                     <i class='bx bxs-group'></i>
