@@ -668,6 +668,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('atm.index') }}">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Nomor rekening</span>
+                </a>
+            </li>
+            <li>
                 <a href="/kategori_admin">
                     <i class='bx bx-store'></i>
                     <span class="text">Kategori Admin</span>

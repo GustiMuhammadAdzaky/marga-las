@@ -1,8 +1,6 @@
 <?php
 
-
-
-
+use App\Http\Controllers\Admin\AtmController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\FakturController;
 use App\Http\Controllers\Admin\GaleriAdminController;
@@ -108,6 +106,10 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
     // Faktur 
     Route::get('/faktur', [FakturController::class, 'form'])->name('faktur.admin');
     Route::post('/faktur/store', [FakturController::class, 'store'])->name('faktur.store.admin');
+
+    // no atm
+    Route::get('/atm', [AtmController::class, 'form'])->name('atm.index');
+    Route::post('/atm/store', [AtmController::class, 'store'])->name('atm.store');
 });
 
 

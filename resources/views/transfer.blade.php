@@ -83,6 +83,7 @@
     <!-- contact section -->
     <section class="contact_section layout_padding">
         <div class="container">
+
             <div class="heading_container heading_center">
                 <h2>Bukti {{ $title }}</h2>
             </div>

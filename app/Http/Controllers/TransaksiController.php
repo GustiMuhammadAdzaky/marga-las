@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AtmModel;
 use App\Models\LayananModel;
 use App\Models\TransaksiModel;
 use App\Models\User;
@@ -59,8 +60,9 @@ class TransaksiController extends Controller
 
     public function form($id)
     {
+        $noRek = AtmModel::all()[0]->no_rek;
         $transaksi = TransaksiModel::find($id);
-        return view('bukti_transfer', compact("transaksi"));
+        return view('bukti_transfer', compact("transaksi", "noRek"));
     }
 
 

@@ -19,28 +19,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            $transaksiBelumTerbayarTransfer = TransaksiModel::where('status', 'belum_terbayar')
-                ->where('tipe_pembayaran', 'transfer')
-                ->get();
-            foreach ($transaksiBelumTerbayarTransfer as $transaksi) {
-                $transaksi->delete();
-            }
-        })->everyFourHours(); // -> Jalankan tugas pada hari pertama setiap bulan pukul 00:00
-        $schedule->call(function () {
-            $transaksiBelumTerbayarKredit = TransaksiModel::where('status', 'belum_terbayar')
-                ->where('tipe_pembayaran', 'kredit')
-                ->get();
-
-            foreach ($transaksiBelumTerbayarKredit as $transaksi) {
-                $this->sendReminderEmail($transaksi, $transaksi->user->email);
-            }
-
-            info('Email Telah terkirim');
-        })->monthly(); // -> Jalankan tugas setiap empat jam
-
-
-        // demo permenit
         // $schedule->call(function () {
         //     $transaksiBelumTerbayarTransfer = TransaksiModel::where('status', 'belum_terbayar')
         //         ->where('tipe_pembayaran', 'transfer')
@@ -48,7 +26,31 @@ class Kernel extends ConsoleKernel
         //     foreach ($transaksiBelumTerbayarTransfer as $transaksi) {
         //         $transaksi->delete();
         //     }
-        // })->everyMinute(); // -> Jalankan tugas pada hari pertama setiap bulan pukul 00:00
+        // })->everyFourHours(); // -> Jalankan tugas pada hari pertama setiap bulan pukul 00:00
+        // $schedule->call(function () {
+        //     $transaksiBelumTerbayarKredit = TransaksiModel::where('status', 'belum_terbayar')
+        //         ->where('tipe_pembayaran', 'kredit')
+        //         ->get();
+
+        //     foreach ($transaksiBelumTerbayarKredit as $transaksi) {
+        //         $this->sendReminderEmail($transaksi, $transaksi->user->email);
+        //     }
+
+        //     info('Email Telah terkirim');
+        // })->monthly(); // -> Jalankan tugas setiap empat jam
+
+
+        // demo permenit
+        $schedule->call(function () {
+            // $transaksiBelumTerbayarTransfer = TransaksiModel::where('status', 'belum_terbayar')
+            //     ->where('tipe_pembayaran', 'transfer')
+            //     ->get();
+            // foreach ($transaksiBelumTerbayarTransfer as $transaksi) {
+            //     $transaksi->delete();
+            // }
+
+            info('tst');
+        })->everyMinute(); // -> Jalankan tugas pada hari pertama setiap bulan pukul 00:00
         // $schedule->call(function () {
         //     $transaksiBelumTerbayarKredit = TransaksiModel::where('status', 'belum_terbayar')
         //         ->where('tipe_pembayaran', 'kredit')

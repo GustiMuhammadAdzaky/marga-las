@@ -100,8 +100,14 @@
                     </div>
                     @endif
                     <div class="form_container">
-
-
+                        <div class="card" style="">
+                            <div class="card-header text-center">
+                                Nomor Rekening
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-center">{{ $noRek }}</li>
+                            </ul>
+                        </div>
                         <!-- Id Transaksi	Nama Peneransfer	Foto Bukti -->
                         <form action="/transaksi/{{ $transaksi->id }}" enctype="multipart/form-data" method="POST">
                             @method('PUT')
