@@ -18,8 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); // Tambahkan kolom user_id
             $table->foreign('user_id')->references('id')->on('users'); // Tambahkan foreign key ke tabel users
             $table->string('name');
+            // $table->string('name', 30);
             $table->string('rate')->nullable();
+            // $table->string('rate', 10)->nullable();
             $table->string('deskripsi')->nullable();
+            // $table->string('deskripsi', 100)->nullable();
             $table->timestamps();
         });
     }

@@ -114,6 +114,9 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
 
 
 Route::group(['middleware' => ['checkRole:admin,pelanggan']], function () {
+
+    // kontak
+    Route::post('/kontak_admin/store', [KontakAdminController::class, 'store'])->name("kontak_store.admin");
     // checkout To transaksi
     Route::post('cart/checkout', [TransaksiController::class, 'checkout'])->name('cart.checkout');
     // Transaksi -> SEKARANG

@@ -24,7 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $testimoniModel = TestimoniModel::all();
+        // $testimoniModel = TestimoniModel::all();
+        $testimoniModel = TestimoniModel::where('deskripsi', '!=', '')
+            ->whereNotNull('deskripsi')
+            ->get();
         return view('home', compact('testimoniModel'));
     }
 }

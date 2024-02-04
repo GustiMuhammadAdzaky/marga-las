@@ -47,6 +47,8 @@ class LaporanPenjualanController extends Controller
         $tanggalAwal = $request->input('tanggal_awal');
         $tanggalAkhir = $request->input('tanggal_akhir');
 
+        // dd($tanggalAwal, $tanggalAkhir);
+
         $laporanQuery = TransaksiModel::where('status', 'terbayar');
 
         // Tambahkan filter berdasarkan tanggal jika tanggal_awal dan tanggal_akhir ada
@@ -56,7 +58,14 @@ class LaporanPenjualanController extends Controller
 
         $laporan = $model->idToData($laporanQuery->get());
 
-        $pdf = PDF::loadView('admin.laporan_pdf', ['laporan' => $laporan]);
+        $pdf = PDF::loadView(
+            'admin.laporan_pdf',
+            [
+                'laporan' => $laporan,
+                'tanggalAwal' => $tanggalAwal,
+                'tanggalAkhir' => $tanggalAkhir,
+            ]
+        );
         return $pdf->download('laporan.pdf');
     }
 }

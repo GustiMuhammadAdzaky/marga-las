@@ -119,8 +119,8 @@
                                         <label for="image" class="form-label required-field" style="color: white;">Bukti
                                             Transfer</label>
                                     </div>
-                                    <input name="gambar" class="form-control" type="file" id="image"
-                                        onchange="previewImage()">
+                                    <input name="gambar" accept=".jpg, .jpeg, .png" class="form-control" type="file"
+                                        id="image" onchange="previewImage()">
                                 </div>
                             </div>
                             <div class="btn_box">

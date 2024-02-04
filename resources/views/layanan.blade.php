@@ -99,7 +99,7 @@
             <h2>Layanan <span> Kami</span></h2>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="kategori mt-5">
                     <div class="container">
                         <div class="card" style="width: 18rem;">

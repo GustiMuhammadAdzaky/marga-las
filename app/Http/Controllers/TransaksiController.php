@@ -69,7 +69,7 @@ class TransaksiController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $transaksi = TransaksiModel::find($id);

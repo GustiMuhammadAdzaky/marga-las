@@ -61,20 +61,27 @@
         <div class="container">
             <div class="title">
 
-                <h3 class="text-center" style="font-size: 25pt;">Laporan Jasa Service dan penjualan</h3>
+                <h3 class="text-center" id="margalas" style="font-size: 25pt;">Marga Las</h3>
 
 
-                <h3 class="text-center" id="margalas" style="font-size: 20pt;">Marga Las
+                <h3 class="text-center" style="font-size: 15pt;">
+                    Laporan Jasa Service dan penjualan
                 </h3>
+
+                <h4>
+                    Periode {{ $tanggalAwal }} Sampai dengan {{ $tanggalAkhir }}
+                </h4>
 
                 <p tyle="font-size: 30pt;">Jalan 28 Oktober No.18b</p>
             </div>
             <hr>
         </div>
 
+
+
         <div class="right">
             @php date_default_timezone_set('Asia/Jakarta'); @endphp
-            <p>Dicetak pada {{ date("Y-m-d H:i:s") }}</p>
+            <p>Dicetak pada {{ date("Y-m-d H:i:s") }} </p>
         </div>
     </header>
 

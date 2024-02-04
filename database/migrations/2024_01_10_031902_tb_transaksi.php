@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('gambar')->nullable();
             $table->time('reminder')->nullable();
             $table->string('keterangan')->nullable();
+            // $table->string('keterangan', 100)->nullable();
         });
     }
 
