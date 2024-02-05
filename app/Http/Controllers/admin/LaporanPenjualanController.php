@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\TransaksiModel;
+use Carbon\Carbon;
 
 
 class LaporanPenjualanController extends Controller
@@ -24,16 +25,17 @@ class LaporanPenjualanController extends Controller
         $title = "laporan";
         $model = new TransaksiModel();
 
-        // Tambahkan seleksi berdasarkan tanggal jika ada
         $tanggalAwal = $request->input('tanggal_awal');
         $tanggalAkhir = $request->input('tanggal_akhir');
 
         $laporanQuery = TransaksiModel::where('status', 'terbayar');
-
+        $tanggalAkhir = Carbon::parse($tanggalAkhir)->addDay();
 
         if ($tanggalAwal && $tanggalAkhir) {
             $laporanQuery->whereBetween('tanggal_pesan', [$tanggalAwal, $tanggalAkhir]);
         }
+
+
 
         $laporan = $model->idToData($laporanQuery->paginate(10)); // Sesuaikan jumlah data per halaman
 
@@ -47,13 +49,12 @@ class LaporanPenjualanController extends Controller
         $tanggalAwal = $request->input('tanggal_awal');
         $tanggalAkhir = $request->input('tanggal_akhir');
 
-        // dd($tanggalAwal, $tanggalAkhir);
-
         $laporanQuery = TransaksiModel::where('status', 'terbayar');
 
-        // Tambahkan filter berdasarkan tanggal jika tanggal_awal dan tanggal_akhir ada
+        $pageTanggalAkhir = Carbon::parse($tanggalAkhir)->addDay();
+
         if ($tanggalAwal && $tanggalAkhir) {
-            $laporanQuery->whereBetween('tanggal_pesan', [$tanggalAwal, $tanggalAkhir]);
+            $laporanQuery->whereBetween('tanggal_pesan', [$tanggalAwal, $pageTanggalAkhir]);
         }
 
         $laporan = $model->idToData($laporanQuery->get());
