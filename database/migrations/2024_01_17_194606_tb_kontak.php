@@ -23,13 +23,13 @@ return new class extends Migration
     {
         Schema::create('tb_kontak', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            // $table->string('nama', 30);
-            $table->string('nomor');
-            // $table->string('nomor', 16);
+            // $table->string('nama');
+            $table->string('nama', 30);
+            // $table->string('nomor');
+            $table->string('nomor', 15);
             $table->string('email');
-            $table->string('pesan');
-            // $table->string('pesan', 100);
+            // $table->string('pesan');
+            $table->string('pesan', 200);
         });
     }
 

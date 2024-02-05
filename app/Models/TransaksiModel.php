@@ -31,6 +31,21 @@ class TransaksiModel extends Model
     }
 
 
+    public function laporanFuntion($query)
+    {
+        $data = [];
+        foreach ($query as $transaksi) {
+            if ($transaksi->tipe_pembayaran == "kredit") {
+                $data[] = $transaksi;
+            } elseif ($transaksi->status == "terbayar") {
+                $data[] = $transaksi;
+            }
+        }
+        return $data;
+    }
+
+
+
 
     public function idToData($query)
     {

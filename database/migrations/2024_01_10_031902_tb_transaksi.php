@@ -25,8 +25,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->string('gambar')->nullable();
             $table->time('reminder')->nullable();
-            $table->string('keterangan')->nullable();
-            // $table->string('keterangan', 100)->nullable();
+            // $table->string('keterangan')->nullable();
+            $table->string('keterangan', 200)->nullable();
         });
     }
 

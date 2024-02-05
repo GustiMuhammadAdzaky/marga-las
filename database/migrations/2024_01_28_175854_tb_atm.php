@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('tb_atm', function (Blueprint $table) {
             $table->id();
-            $table->string('no_rek');
+            $table->string('no_rek', 50);
+            // $table->string('no_rek');
+
         });
     }
 

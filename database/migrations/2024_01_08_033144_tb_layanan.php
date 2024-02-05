@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('tb_layanan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_alat');
-            // $table->string('nama_alat', 30);
-            $table->string('deskripsi_layanan');
-            // $table->string('deskripsi_layanan', 100);
+            // $table->string('nama_alat');
+            $table->string('nama_alat', 50);
+            // $table->string('deskripsi_layanan');
+            $table->string('deskripsi_layanan', 200);
             $table->string('harga_layanan');
             $table->unsignedBigInteger('kategori_id')->nullable();
             $table->foreign('kategori_id')->references('id')->on('tb_kategori');

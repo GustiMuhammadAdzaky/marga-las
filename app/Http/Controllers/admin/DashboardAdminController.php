@@ -17,7 +17,7 @@ class DashboardAdminController extends Controller
 
         $totalOrder = TransaksiModel::count();
         $lunasOrder = TransaksiModel::where('status', 'terbayar')->count();
-        $totalKeuntungan = TransaksiModel::sum('total_harga');
+        $totalKeuntungan = TransaksiModel::where('status', 'terbayar')->sum('total_harga');
 
         $grafikData = [
             'labels' => $transaksiModels->pluck('tanggal_pesan'),
