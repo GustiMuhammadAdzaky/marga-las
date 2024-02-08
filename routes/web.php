@@ -90,6 +90,7 @@ Route::group(['middleware' => ['checkRole:admin']], function () {
     // invoice controller
     Route::get('/invoice', [InvoiceController::class, 'index'])->name("invoice.admin");
     Route::post('/invoice/store', [InvoiceController::class, 'store'])->name("store_invoice.admin");
+    Route::get('/invoice/view/pdf', [InvoiceController::class, 'viewPdf'])->name('invoice.view.pdf');
 
     // Kontak Admin controller
     Route::get('/kontak_admin', [KontakAdminController::class, 'index'])->name("kontak.admin");

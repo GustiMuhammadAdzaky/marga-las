@@ -12,13 +12,6 @@ use Carbon\Carbon;
 
 class LaporanPenjualanController extends Controller
 {
-    // public function index()
-    // {
-    //     $title = "laporan";
-    //     $model = new TransaksiModel();
-    //     $laporan =  $model->idToData(TransaksiModel::where('status', 'terbayar')->get());
-    //     return view("admin.laporan", compact("laporan", "title"));
-    // }
 
     public function index(Request $request)
     {
@@ -34,9 +27,6 @@ class LaporanPenjualanController extends Controller
         if ($tanggalAwal && $tanggalAkhir) {
             $laporanQuery->whereBetween('tanggal_pesan', [$tanggalAwal, $tanggalAkhir]);
         }
-
-
-
         $laporan = $model->idToData($laporanQuery->paginate(10)); // Sesuaikan jumlah data per halaman
 
         return view("admin.laporan", compact("laporan", "title"));
@@ -48,6 +38,7 @@ class LaporanPenjualanController extends Controller
         $model = new TransaksiModel();
         $tanggalAwal = $request->input('tanggal_awal');
         $tanggalAkhir = $request->input('tanggal_akhir');
+        // dd($tanggalAwal);
 
         $laporanQuery = TransaksiModel::where('status', 'terbayar');
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan</title>
+    <title>Laporan Kredit</title>
     <style>
         table {
             border-collapse: collapse;
@@ -65,7 +65,7 @@
 
 
                 <h3 class="text-center" style="font-size: 15pt;">
-                    Laporan Jasa Service dan penjualan
+                    Laporan Kredit Jasa Service dan penjualan
                 </h3>
 
                 <h4>
